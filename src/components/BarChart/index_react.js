@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './styles.css';
 import * as d3 from 'd3';
-import XAxis from './XAxis'
+import XAxis from './XAxis';
 
 let margin = { top: 20, left: 25 };
 
@@ -12,14 +12,22 @@ const BarChart = (props) => {
   const xAxisRef = useRef();
 
   let yScale = d3.scaleBand().padding(0.1);
-  let xScale = d3.scaleLinear().domain([0, 100]).range([0, 1100 - margin.left])
+  let xScale = d3
+    .scaleLinear()
+    .domain([0, 100])
+    .range([0, 1100 - margin.left]);
 
   // useCallback used as per Reacts advices after adding xAxis as dependency to useEffect
-  let xAxis = useCallback( (g) =>
-    g
-      .attr('transform', 'translate(200,0)')
-      .call(d3.axisBottom(xScale))
-      .call((g) => {g.select('.domain').remove()}),[xScale]);
+  let xAxis = useCallback(
+    (g) =>
+      g
+        .attr('transform', 'translate(200,0)')
+        .call(d3.axisBottom(xScale))
+        .call((g) => {
+          g.select('.domain').remove();
+        }),
+    [xScale]
+  );
 
   useEffect(() => {
     d3.select(xAxisRef.current).style('font-size', 14).call(xAxis);
@@ -30,72 +38,24 @@ const BarChart = (props) => {
     setHeight(props.nestedData.length * 28.75);
   }, [props.nestedData]);
 
-  const circleToolTip = (e, d) => {
-    console.log('this is circleToolTip e,d: ', e, d);
-    let top = e.pageY - 80;
-    let left = e.pageX + 10;
-    let tooltip = d3.select('.circleToolTip');
-    console.log('circleToolTip - tooltip', tooltip);
-    d3.select('.circleToolTip .title').text(d.name);
-    d3.select('.circleToolTip .neighborhood').text(
-      `${d.neighborhood}, ${d.borough}`
-    );
-    d3.select('.circleToolTip .avg').text(
-      (elem) => `Overall: ${d.overall}/100`
-    );
-    tooltip
-      .style('top', top + 'px')
-      .style('left', left + 'px')
-      .style('opacity', 1)
-      .style('display', 'block');
-  };
-
-  function removeCircleToolTip() {
-    let tooltipBar = d3.select('.circleToolTip');
-    let tooltip = d3.select('.circleToolTip');
-    tooltip.style('opacity', 0);
-    tooltipBar.style('opacity', 0).style('display', 'none');
-  }
-
-  function rectToolTip(e, d) {
-    console.log('this is rectToolTip e,d', e, d);
-    let top = e.pageY - 80;
-    let left = e.layerX + 200;
-    let tooltip = d3.select('.rectToolTip');
-    d3.select('.title').text(d.key);
-    d3.select('.avg')
-      .text(`Avg. Overall Rating: ${Math.floor(d.value.avg)}/100`);
-    tooltip
-      .style('top', top + 20 + 'px')
-      .style('left', left + 'px')
-      .style('opacity', 1)
-      .style('display', 'block');
-  }
-
-  function removeRectToolTip() {
-    let tooltip = d3.select('.rectToolTip');
-    tooltip.style('opacity', 0).style('display', 'none');
-  }
-
   const renderChart = (data) => {
     console.log('BarChart - renderChart - data', data);
-    let gBottom = d3.select(svgRef.current);
-    yScale.domain(data.map((d, i) => i));
-    yScale.range([0, data.length]);
-    data.sort( (a,b) => { return d3.descending(+a.value.avg, +b.value.avg)})
+    let svgNeighborhoods = d3.select(svgRef.current);
+    yScale.domain(data.map((d, i) => i)).range([0, data.length * 30.84]);
+    data.sort((a, b) => {
+      return d3.descending(+a.value.avg, +b.value.avg);
+    });
 
-    let neighborhoods = gBottom
-      .selectAll('svg.neighborhood')
+    let neighborhoods = svgNeighborhoods
+      .selectAll('g.neighborhood')
       .data(data, (d) => d.key);
 
     const neighborhood = neighborhoods
       .enter()
-      .append('svg')
+      .append('g')
       .attr('height', '28.84px')
       .classed('neighborhood', true)
-      .attr('id', (d) => {
-        return d.value.NTA;
-      })
+      .attr('id', (d) => d.value.NTA)
       .attr('transform', (d, i) => `translate(0,${yScale(i)})`)
       .attr('opacity', 0);
 
@@ -123,9 +83,9 @@ const BarChart = (props) => {
       // .attr("height", yScale.bandwidth())
       .attr('height', '28.84px')
       .style('fill', '#d4d1d1')
-      .attr('class', (d) => `${d.key}`)
-      .on('mousemove', (e, d) => rectToolTip(e, d))
-      .on('mouseout', (e, d) => removeRectToolTip(e, d));
+      .attr('class', (d) => `${d.key}`);
+    // .on('mousemove', (e, d) => rectToolTip(e, d))
+    // .on('mouseout', (e, d) => removeRectToolTip(e, d));
 
     // CIRCLES
     neighborhood
@@ -134,16 +94,13 @@ const BarChart = (props) => {
       .enter()
       .append('circle')
       .attr('cx', (d) => xScale(+d.overall) + 200)
-      .attr('cy', (d, i) => {
-        let mid = yScale.bandwidth() / 2 + 15;
-        return mid;
-      })
+      .attr('cy', (d, i) => yScale.bandwidth() / 2)
       .attr('r', 7)
       .attr('fill', (d) => d.color)
       .attr('stroke', 'black')
-      .attr('class', (d, i) => `rect-circle parks park${d.id}`)
-      .on('mouseover', (e, d) => circleToolTip(e, d))
-      .on('mouseout', (e, d) => removeCircleToolTip(d));
+      .attr('class', (d, i) => `rect-circle parks park${d.id}`);
+    // .on('mouseover', (e, d) => circleToolTip(e, d))
+    // .on('mouseout', (e, d) => removeCircleToolTip(d));
 
     // UPDATE
     if (data.length === 1) {
@@ -170,20 +127,17 @@ const BarChart = (props) => {
     });
   };
 
-  const svgStyles = {
-    height: `${height}px`
-  };
-
   return (
     <>
       <div id="axis">
-        {/* <XAxis /> */}
+        <XAxis />
         <svg style={{ height: '20px', width: '100%' }}>
           <g ref={xAxisRef} style={{ fontSize: '14px' }}></g>
         </svg>
       </div>
       <div id="chart">
-        <div style={svgStyles} ref={svgRef}></div>
+        <svg style={svgStyles} ref={svgRef}></svg>
+        {/* <div style={svgStyles} ref={svgRef}></div> */}
       </div>
     </>
   );

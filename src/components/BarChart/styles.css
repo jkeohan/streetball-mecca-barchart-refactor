@@ -25,13 +25,17 @@
   width: 100%;
 }
 
+#chart svg {
+  height: 1600.25px;
+}
+
 svg {
   width: 100%;
   /* height: 100%; */
 }
 
 svg.neighborhood:hover {
-  background:beige;
+  background: beige;
 }
 
 .tick line {
@@ -41,13 +45,14 @@ svg.neighborhood:hover {
 /***************************/
 /* TOOLTIP */
 /***************************/
-.rectToolTip, .circleToolTip {
-  display:none;
-  position:absolute;
-  background:white;
+.rectToolTip,
+.circleToolTip {
+  display: none;
+  position: absolute;
+  background: white;
   padding: 5px 20px;
   text-align: center;
-  border:1px solid;
+  border: 1px solid;
   box-shadow: 2px 2px #7b7575;
 }
 
@@ -57,12 +62,12 @@ svg.neighborhood:hover {
   font-weight: bold;
 }
 
-.rectToolTip .avg{
+.rectToolTip .avg {
   margin: 0;
 }
 
 .circleToolTip {
-  width:250px;
+  width: 250px;
 }
 
 .circleToolTip .title {
@@ -71,19 +76,19 @@ svg.neighborhood:hover {
   font-weight: bold;
 }
 
-.circleToolTip .neighborhood, .circleToolTip .avg{
+.circleToolTip .neighborhood,
+.circleToolTip .avg {
   margin: 0;
 }
 
-#mapCountyToolTip { 
-  position: absolute;     
-  text-align: center;         
-  padding: 2px;       
-  font: 12px sans-serif;    
-  background: #fff; 
-  border: 0px;    
-  border-radius: 8px;     
+#mapCountyToolTip {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #fff;
+  border: 0px;
+  border-radius: 8px;
   pointer-events: none;
-  opacity: 0;     
+  opacity: 0;
 }
-
