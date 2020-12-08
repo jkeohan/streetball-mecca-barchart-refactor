@@ -177,7 +177,7 @@ const BarChart = (props) => {
   return (
     <>
       <div id="axis">
-        <XAxis />
+        {/* <XAxis /> */}
         <svg style={{ height: '20px', width: '100%' }}>
           <g ref={xAxisRef} style={{ fontSize: '14px' }}></g>
         </svg>
