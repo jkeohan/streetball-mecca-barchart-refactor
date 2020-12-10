@@ -5,8 +5,8 @@ import TopParks from '../ParkInfo/TopParks';
 import ParkImage from '../ParkInfo/ParkImage/image-spring';
 import Title from '../Title';
 import Map from '../Map';
-// import BarChart from '../BarChart/index_react';
-import BarChart from '../BarChart/index_d3'
+import BarChart from '../BarChart/index_react';
+// import BarChart from '../BarChart/index_d3'
 // HELPERS
 import { formatData } from '../../services/format/formatters';
 // CUSTOM HOOKS
@@ -48,7 +48,7 @@ export default function App() {
     <div className="App">
       <main>
         <Title />
-        {/* <section id="left">
+        <section id="left">
           <article id="left-top">
             <TopParks {...parkData} dispatch={dispatch} />
           </article>
@@ -58,7 +58,7 @@ export default function App() {
             <ParkImage activePark={parkData.activePark} />
             <Map {...parkData} dispatch={dispatch} />
           </section>
-        </section> */}
+        </section>
         <section id="bottom">
           <div id="desc">
             <h3>Which Neighborhood Has The Best Pickup Games?</h3>
