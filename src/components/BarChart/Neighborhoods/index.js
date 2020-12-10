@@ -4,7 +4,7 @@ import './styles.css';
 import Neighborhood from '../Neighborhood'
 let margin = { left: 25 };
 
-const Neighborhoods = ({nestedData}) => {
+const Neighborhoods = ({nestedData, dispatch, activeNeighborhood}) => {
   let xScale = d3.scaleLinear().domain([0, 100])
   .range([0, 1100 - margin.left]);
 
@@ -19,6 +19,9 @@ const Neighborhoods = ({nestedData}) => {
       width={width} 
       title={d.key}
       xScale={xScale}
+      d={d}
+      dispatch={dispatch}
+      activeNeighborhood={activeNeighborhood}
     />
   })
   return (

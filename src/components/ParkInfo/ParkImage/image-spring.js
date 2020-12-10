@@ -18,7 +18,7 @@ const ParkImage = ({ activePark }) => {
     }
   });
 
-  console.log('ParkImage - transitions', transitions);
+  // console.log('ParkImage - transitions', transitions);
 
 
   return (
@@ -26,7 +26,7 @@ const ParkImage = ({ activePark }) => {
       <section className="park-info-container">
         {activePark.code &&
           transitions.map(({ item, props, key }) => {
-            console.log('transition.map - item, props, key', item, props, key);
+            // console.log('transition.map - item, props, key', item, props, key);
             return (
               <animated.div
                 key={key}

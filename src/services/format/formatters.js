@@ -19,7 +19,7 @@ const formatData = (data) => {
     'Staten Island': '#CD7998'
   };
 
-  console.log('formatData - data[0]', data[0]);
+  // console.log('formatData - data[0]', data[0]);
   return data.map((d, i) => {
     return {
       code: d.gsx$ntacode.$t,

@@ -4,7 +4,7 @@ import XAxis from './XAxis';
 import Neighborhoods from './Neighborhoods'
 
 const BarChart = (props) => {
-
+  console.log('BarChart - props', props)
   return (
     <>
       <div id="axis">

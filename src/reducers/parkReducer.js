@@ -24,7 +24,7 @@ const parkReducer = (state, action) => {
         filterParksByRating(d, 'Very Good')
       );
       allNestedData = formatNestedData(action.payload.data);
-      console.log('INITIAL_API_CALL - topParks', topParks)
+      // console.log('INITIAL_API_CALL - topParks', topParks)
       return {
         ...state,
         allNestedData,
