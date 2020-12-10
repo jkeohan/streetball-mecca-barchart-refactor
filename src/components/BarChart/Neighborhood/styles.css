@@ -6,22 +6,17 @@
 }
 
 .title {
-  flex: 1;
-  max-width: 200px;
+  width: 200px;
 }
 
 .bar-group {
   height: 100%;
-  flex: 1;
   position: relative;
 }
 
 .bar {
-  width: calc(80% - 18px);
   background: rgb(212, 209, 209);
   height: 100%;
-
-  display: flex;
   align-items: center;
 }
 
@@ -29,6 +24,7 @@
   top: 7px;
   position: absolute;
   border-radius: 50%;
+  border: 1px solid;
   background: green;
   height: 15px;
   width: 15px;

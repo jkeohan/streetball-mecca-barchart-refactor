@@ -86,7 +86,7 @@ div {
 
 #desc {
   flex: 0 0 70%;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   margin-bottom: 5px;
 }
 
