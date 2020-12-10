@@ -5,6 +5,7 @@ const Circle = ({color, left}) => {
   return (
     <div
     className="circle"
+    style={{background: color, left: left}}
   ></div>
   )
 }
