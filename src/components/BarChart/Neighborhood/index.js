@@ -19,7 +19,9 @@ const Neighborhood = ({
     return (
       <Circle 
         key={i}
+        dispatch={dispatch}
         color={d.color} 
+        park={d}
         left={position}/>
     );
   });
