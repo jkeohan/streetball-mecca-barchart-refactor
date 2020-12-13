@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import './styles.css';
-// COMPONENTS
+// COMPONENT
 import ParksByRating from '../ParkInfo/ParksByRating';
 import ParkImage from '../ParkInfo/ParkImage/image-spring';
 import Title from '../Title';
