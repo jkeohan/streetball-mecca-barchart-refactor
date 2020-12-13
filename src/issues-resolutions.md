@@ -31,3 +31,31 @@ setParkData( prevState => ({
   activeParks: formattedData,
 }));
 ```
+
+### SECTION: PARK IMAGE
+ISSUE: Just added an EV to the circles in bar chart. When the circle is clicked the park image updates but without transition.  
+
+When clicking on a park via rating the ParkImage comp renders 2x but not so with the circle which is why there is no transition. 
+
+INVESTIGATING: I thought since the bar chart hard already been filtered when the circles were clicked on that perhaps this might be the issue.  Testing this out by clicking 2 parks in the same neighborhood in the ratings section confirmed this. So the barchart not updating seems to be causing the issue
+
+From the console logs I added inside the transition I can see that it only runs once when parks in same neighborhood are toggled:
+
+<img src="https://i.imgur.com/xwjfIXD.png">
+
+But runs 3x with if the following sequence:
+
+<img src="https://i.imgur.com/Qu0D0f7.png">
+
+RESOLUTION: After trying multiple attempts I found that the issue had to do with setting **image.code** in the callback of useTransition.  Parks in the same neighborhood have the same code.  useTransition needs a value to determine if a transition is needed and does so by comparing a property value of the images.  
+
+```js
+  const transitions = useTransition(activePark, (image) => image.name, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: {
+      duration: 1000
+    }
+  });
+```

@@ -3,8 +3,6 @@ import './styles.css';
 
 const ParkRating = memo(({
   park,
-  handleUpdateActivePark,
-  handleUpdateParkRating,
   dispatch
 }) => {
   // console.log('ParkRating', park)
@@ -35,5 +33,6 @@ const ParkRating = memo(({
     </li>
   );
 });
+
 
 export default ParkRating

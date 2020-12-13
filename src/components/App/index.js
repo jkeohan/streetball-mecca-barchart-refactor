@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import './styles.css';
 // COMPONENTS
-import TopParks from '../ParkInfo/TopParks';
+import ParksByRating from '../ParkInfo/ParksByRating';
 import ParkImage from '../ParkInfo/ParkImage/image-spring';
 import Title from '../Title';
 import Map from '../Map';
@@ -50,7 +50,7 @@ export default function App() {
         <Title />
         <section id="left">
           <article id="left-top">
-            <TopParks {...parkData} dispatch={dispatch} />
+            <ParksByRating {...parkData} dispatch={dispatch} />
           </article>
         </section>
         <section id="right">

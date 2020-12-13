@@ -62,7 +62,7 @@ const parkReducer = (state, action) => {
       park = action.payload.park;
       topParks = state.topParks.map((d) => filterParksByName(d, park.name));
       activeParks = state.allParks.filter((d) => d.name === park.name);
-      console.log('FILTER_ACTIVE_PARK - park', park);
+      // console.log('FILTER_ACTIVE_PARK - park', park);
       nestedData = state.allNestedData.filter((d) => d.value.parks.includes(park))
 
       return {

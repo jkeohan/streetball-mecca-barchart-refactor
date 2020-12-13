@@ -8,8 +8,8 @@ import { useTransition, animated } from 'react-spring';
 import './styles.css';
 
 const ParkImage = ({ activePark }) => {
-
-  const transitions = useTransition(activePark, (image) => image.code, {
+  console.log('ParkImage - activePark', activePark)
+  const transitions = useTransition(activePark, (image) => image.name, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -24,9 +24,9 @@ const ParkImage = ({ activePark }) => {
   return (
     <>
       <section className="park-info-container">
-        {activePark.code &&
+        {activePark.name &&
           transitions.map(({ item, props, key }) => {
-            // console.log('transition.map - item, props, key', item, props, key);
+            console.log('transition.map - item, props, key', item, props, key);
             return (
               <animated.div
                 key={key}
@@ -42,3 +42,15 @@ const ParkImage = ({ activePark }) => {
 };
 
 export default ParkImage
+
+
+// ADDED memo to see if this would resolve the issue with clicking on another park in the same 
+// neighborhood and the image not transitioning
+// function areEqual(prevPark, nextPark) {
+//   console.log('ParkImage - areEqual', prevPark, nextPark)
+//   return prevPark === nextPark
+// }
+
+
+// const MemoizedParkImage = React.memo(ParkImage, areEqual);
+// export default MemoizedParkImage
