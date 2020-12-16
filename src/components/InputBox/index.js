@@ -6,8 +6,8 @@ const Input = ({dispatch,allParks,activeParks, reset}) => {
   // console.log('Input - props', activeParks, reset)
   const [val, setVal] = useState('');
   const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef()
   const [isOpen, setOpen] = useState(false)
+  const ref = useRef()
   useOnClickOutside(ref, () => setOpen(false))
 
   const handleUpdateVal = (park) => {

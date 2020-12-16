@@ -48,7 +48,9 @@ const formatNestedData = (data) => {
       borough: l[0].borough,
       code: l[0]['code']
     }))
-    .entries(data)
+    .entries(data).sort((a, b) => d3.descending(+a.value.avg, +b.value.avg)
+  );
+
 };
 
 // ORIGINAL FORMATNESTEDDATA FUNCTION

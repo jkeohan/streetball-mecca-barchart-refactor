@@ -72,8 +72,14 @@ const parkReducer = (state, action) => {
         activeParks,
         activePark: park,
         activeBorough: park.borough,
-        activeNeighborhood: ''
+        // activeNeighborhood: ''
       };
+    case 'FILTER_ACTIVE_PARK_MAP_ONLY':
+      activeParks = state.allParks.filter((d) => d.name === park.name);
+      return {
+        ...state,
+        activeParks
+      }
     case 'FILTER_ACTIVE_BOROUGH':
       borough = action.payload.borough;
       nestedData = filterNeighborHoodsByRating(state.allNestedData, state.activeRating, borough) 

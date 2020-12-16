@@ -1,34 +1,30 @@
 import React from 'react';
-import * as d3 from 'd3';
 import './styles.css';
-import Neighborhood from '../Neighborhood'
-let margin = { left: 25 };
+import Neighborhood from '../Neighborhood';
 
-const Neighborhoods = ({nestedData, dispatch, activeNeighborhood}) => {
-  let xScale = d3.scaleLinear().domain([0, 100])
-  .range([0, 1100 - margin.left]);
+const Neighborhoods = ({
+  nestedData,
+  dispatch,
+  activeNeighborhood,
+  xScale
+}) => {
 
-  const data = nestedData.sort((a, b) => 
-    d3.descending(+a.value.avg, +b.value.avg))
+  const neighborhoods = nestedData.map((d, i) => {
+    return (
+      <Neighborhood
+        key={i}
+        title={d.key}
+        parks={d.value.parks}
+        width={xScale(d.value.avg)}
+        xScale={xScale}
+        neighborhood={d}
+        dispatch={dispatch}
+        activeNeighborhood={activeNeighborhood}
+      />
+    );
+  });
+  
+  return <div id="neighborhoods">{neighborhoods}</div>;
+};
 
-  const neighborhoods = data.map( (d,i) => { 
-     const width = xScale(d.value.avg)
-     return <Neighborhood 
-      {...d} 
-      key={i}
-      width={width} 
-      title={d.key}
-      xScale={xScale}
-      d={d}
-      dispatch={dispatch}
-      activeNeighborhood={activeNeighborhood}
-    />
-  })
-  return (
-    <div id="neighborhoods">
-      {neighborhoods}
-    </div>
-  )
-}
-
-export default Neighborhoods
+export default Neighborhoods;

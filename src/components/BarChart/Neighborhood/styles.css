@@ -12,30 +12,16 @@
 }
 
 .title {
-  width: 200px;
+  flex:1 0 200px;;
+  max-width:200px;
   height:100%;
   display: flex;
-    align-items: center;
+  align-items: center;
 }
 
 .bar-group {
+  flex:1;
   height: 100%;
   position: relative;
 }
 
-.bar {
-  background: rgb(212, 209, 209);
-  height: 100%;
-  align-items: center;
-}
-
-.circle {
-  top: 7px;
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid;
-  background: green;
-  height: 15px;
-  width: 15px;
-  left: calc(80% - 24px);
-}

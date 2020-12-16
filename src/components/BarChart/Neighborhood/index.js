@@ -1,54 +1,52 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
-import Bar from '../Bar'
-import Circle from '../Circle'
+import Bar from '../Bar';
+import Circle from '../Circle';
 
 const Neighborhood = ({
-    value, width, xScale, title, dispatch, d, activeNeighborhood}) => {
-  // console.log('Neighborhood - activeNeighborhood', activeNeighborhood)
-  const [active, setActive] = useState(false)
+  parks,
+  width,
+  xScale,
+  title,
+  dispatch,
+  neighborhood,
+  activeNeighborhood
+}) => {
+
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    activeNeighborhood === title ? setActive(true) : setActive(false)
-  },[activeNeighborhood, title])
+    activeNeighborhood === title ? setActive(true) : setActive(false);
+  }, [activeNeighborhood, title]);
 
-  const color = value.parks[0].boroughColor;
-  
-  const circles = value.parks.map((d, i) => {
-    const position = xScale(+d.overall) - 6;
+  const circles = parks.map((d, i) => {
     return (
-      <Circle 
+      <Circle
         key={i}
         dispatch={dispatch}
-        color={d.color} 
+        color={d.color}
         park={d}
-        left={position}/>
+        left={xScale(+d.overall) - 5}
+      />
     );
   });
 
-  const style = {
-    background: active ? 'lightyellow' : ''
-  }
-
-  const handleClick = () => {
-    dispatch({
-      type: 'FILTER_ACTIVE_NEIGHBORHOOD',
-      payload: { neighborhood: d }
-    })
-    // setActive(true)
-  }
-
   return (
-    <div 
+    <div
       className="neighborhood"
-      style={style}
-      onClick={() => handleClick()}
+      style={{ background: active ? 'lightyellow' : '' }}
+      onClick={() =>
+        dispatch({
+          type: 'FILTER_ACTIVE_NEIGHBORHOOD',
+          payload: { neighborhood }
+        })
+      }
     >
-      <div style={{ color: color }} className="title">
+      <div style={{ color: parks[0].boroughColor }} className="title">
         {title}
       </div>
       <div className="bar-group">
-        <Bar width={width}/>
+        <Bar width={width} />
         {circles}
       </div>
     </div>
