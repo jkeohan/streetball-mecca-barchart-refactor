@@ -15,7 +15,8 @@ const parkReducer = (state, action) => {
     borough,
     allNestedData,
     nestedData,
-    neighborhood
+    neighborhood,
+    activeNeighborhood
 
   switch (action.type) {
     case 'INITIAL_API_CALL':
@@ -75,10 +76,14 @@ const parkReducer = (state, action) => {
         // activeNeighborhood: ''
       };
     case 'FILTER_ACTIVE_PARK_MAP_ONLY':
+      park = action.payload.park;
+      activeNeighborhood = park.neighborhood
+      
       activeParks = state.allParks.filter((d) => d.name === park.name);
       return {
         ...state,
-        activeParks
+        activeParks,
+        activeNeighborhood
       }
     case 'FILTER_ACTIVE_BOROUGH':
       borough = action.payload.borough;
