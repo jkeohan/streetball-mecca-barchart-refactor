@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
-import './styles.css';
+import React  from 'react';
+import './styles.css'
+
 
 const ToolTip = ({ coords, neighborhood }) => {
   console.log('ToolTip - neighborhood', neighborhood, coords);

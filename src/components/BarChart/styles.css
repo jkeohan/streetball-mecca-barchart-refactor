@@ -46,42 +46,7 @@ svg.neighborhood:hover {
 /***************************/
 /* TOOLTIP */
 /***************************/
-.rectToolTip,
-.circleToolTip {
-  /* display: none; */
-  position: absolute;
-  background: white;
-  padding: 5px 20px;
-  text-align: center;
-  border: 1px solid;
-  box-shadow: 2px 2px #7b7575;
-  z-index: 100;
-}
 
-.rectToolTip .title {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-weight: bold;
-}
-
-.rectToolTip .avg {
-  margin: 0;
-}
-
-.circleToolTip {
-  width: 250px;
-}
-
-.circleToolTip .title {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-weight: bold;
-}
-
-.circleToolTip .neighborhood,
-.circleToolTip .avg {
-  margin: 0;
-}
 
 #mapCountyToolTip {
   position: absolute;
