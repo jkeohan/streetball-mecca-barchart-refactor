@@ -24,7 +24,11 @@ const Neighborhoods = ({
     );
   });
   
-  return <div id="neighborhoods">{neighborhoods}</div>;
+  return (
+    <>
+     {neighborhoods}
+    </>
+  )
 };
 
 export default Neighborhoods;
