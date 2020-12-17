@@ -48,13 +48,14 @@ svg.neighborhood:hover {
 /***************************/
 .rectToolTip,
 .circleToolTip {
-  display: none;
+  /* display: none; */
   position: absolute;
   background: white;
   padding: 5px 20px;
   text-align: center;
   border: 1px solid;
   box-shadow: 2px 2px #7b7575;
+  z-index: 100;
 }
 
 .rectToolTip .title {

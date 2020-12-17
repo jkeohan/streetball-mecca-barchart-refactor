@@ -12,7 +12,7 @@ const Neighborhood = ({
   neighborhood,
   activeNeighborhood
 }) => {
-
+  console.log('Neighborhood - neighborhood', neighborhood)
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -46,7 +46,8 @@ const Neighborhood = ({
         {title}
       </div>
       <div className="bar-group">
-        <Bar width={width} />
+        <Bar width={width} neighborhood={neighborhood}   
+        activeNeighborhood={  activeNeighborhood}/>
         {circles}
       </div>
     </div>

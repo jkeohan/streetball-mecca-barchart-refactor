@@ -69,15 +69,15 @@ export default function App() {
             </p>
           </div>
           <BarChart {...parkData} dispatch={dispatch} />
-          <article className="rectToolTip">
-            <p className="title">Central Park</p>
-            <p className="avg">Avg. Overall Rating: 83/100</p>
-          </article>
-          <article className="circleToolTip">
+          {/* <article className="circleToolTip">
             <p className="title">Central Park (Great Lake)</p>
             <p className="neighborhood">Central Park, Manhattan</p>
             <p className="avg">Overall: 83/100</p>
-          </article>
+          </article> */}
+          {/* <article className="rectToolTip">
+            <p className="title">Central Park</p>
+            <p className="avg">Avg. Overall Rating: 83/100</p>
+          </article> */}
         </section>
       </main>
     </div>
