@@ -5,7 +5,11 @@ ISSUE: d3.nest is no longer included as part of the base library in v6...the pre
 RESOLUTION: import {nest} from 'd3-collection';
 
 ### SECTION: BarChart
-ERROR:  When using .on('mouseover', d => d) d now changes to be the event so in order to actually pass the value we need to do:  .on('mouseover', (e,d) => circleToolTip(e,d)) where e is the event and d is the object
+ERROR:  When using .on('mouseover', d => d) d now changes to be the event
+RESOLUTION:  In order to actually pass the value we need to do:  .on('mouseover', (e,d) => circleToolTip(e,d)) where e is the event and d is the object
+
+ISSUE: Neither e.pageY, e.clientY, e.screenY work to position the tooltip 
+RESOLUTION: use e.nativeEvent.offsetY
 
 
 ### SECTION: APP
