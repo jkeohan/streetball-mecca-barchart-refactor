@@ -12,10 +12,9 @@ const Circle = ({ color, left, park, dispatch }) => {
   };
 
   const handleMouseOver = (e) => {
-    console.log('e.pageX', e.clientX, e.pageX, e.nativeEvent.offsetX, e.screenX)
-    let top = e.nativeEvent.offsetY - 90;
-    // let top = e.nativeEvent.offsetY - 60;
-    let left = e.clientX - 500;
+    console.log('e.pageX', e.nativeEvent.clientX, e.nativeEvent.pageX, e.nativeEvent.offsetX)
+    let top = e.nativeEvent.offsetY - 100;
+    let left = e.nativeEvent.clientX;
 
     setIsActive(true);
     setToolTip({ top, left });
