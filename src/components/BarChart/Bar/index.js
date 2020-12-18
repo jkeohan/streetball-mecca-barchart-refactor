@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './styles.css';
-import ToolTip from './ToolTip'
+import ToolTip from './ToolTip/index'
 
 const Bar = ({ width,neighborhood,activeNeighborhood }) => {
     console.log('Bar - neighborhood', neighborhood, activeNeighborhood)
