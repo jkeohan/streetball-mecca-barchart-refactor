@@ -1,7 +1,6 @@
 .neighborhood {
   display: flex;
   height: 28px;
-  align-items: center;
   margin-bottom: 5px;
 
 }
@@ -12,16 +11,11 @@
 }
 
 .title {
-  flex:1 0 200px;;
-  max-width:200px;
-  height:100%;
   display: flex;
   align-items: center;
+  width:200px;
 }
 
 .bar-group {
-  flex:1;
-  height: 100%;
   position: relative;
 }
-
