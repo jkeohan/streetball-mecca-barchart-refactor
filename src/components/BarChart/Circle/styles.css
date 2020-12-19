@@ -6,6 +6,7 @@
     background: green;
     height: 15px;
     width: 15px;
-    left: calc(80% - 24px);
+    /* left: calc(80% - 24px); */
+    z-index: 1000;
+    display:inline-block;
   }
-  

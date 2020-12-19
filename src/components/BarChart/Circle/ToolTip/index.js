@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 
 const ToolTip = ({ coords, park }) => {
-  console.log('ToolTip - neighborhood', park, coords);
+  // console.log('ToolTip - neighborhood', park, coords);
   return (
     <article 
       className="circleToolTip"

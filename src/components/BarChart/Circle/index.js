@@ -12,9 +12,20 @@ const Circle = ({ color, left, park, dispatch }) => {
   };
 
   const handleMouseOver = (e) => {
-    console.log('e.pageX', e.nativeEvent.clientX, e.nativeEvent.pageX, e.nativeEvent.offsetX)
-    let top = e.nativeEvent.offsetY - 100;
-    let left = e.nativeEvent.clientX - 620
+    e.stopPropagation()
+    console.log(
+			'e.value',
+			e.target,
+			e.nativeEvent.clientX,
+			e.nativeEvent.pageX,
+			e.nativeEvent.offsetX,
+			e.nativeEvent.layerX
+    );
+    
+    let top = e.nativeEvent.offsetY - 80;
+    // let left = e.nativeEvent.clientX - 620
+    let left = e.nativeEvent.layerX
+
 
     setIsActive(true);
     setToolTip({ top, left });
@@ -26,17 +37,21 @@ const Circle = ({ color, left, park, dispatch }) => {
   };
 
   return (
-    <>
-      <div
-        onClick={(e) => handleClick(e)}
-        onMouseMove={(e) => handleMouseOver(e)}
-        onMouseOut={() => handleMouseOut()}
-        className="circle"
-        style={{ background: color, left: left }}
-      ></div>
-      { isActive && <ToolTip coords={toolTip} park={park}/> }
-    </>
-  );
+		<>
+			<div
+				onClick={(e) => handleClick(e)}
+				onMouseMove={(e) => handleMouseOver(e)}
+				onMouseOut={() => handleMouseOut()}
+				className='circle'
+				// style={{ background: color, left: left }}
+				style={{
+          background: color,
+          transform: `translate(${left}px, 0px)`,
+        }}
+        ></div>
+			{isActive && <ToolTip coords={toolTip} park={park} />}
+		</>
+	);
 };
 
 export default Circle;

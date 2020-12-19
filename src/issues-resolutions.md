@@ -5,17 +5,49 @@ ISSUE: d3.nest is no longer included as part of the base library in v6...the pre
 RESOLUTION: import {nest} from 'd3-collection';
 
 ### SECTION: BarChart
-ERROR:  When using .on('mouseover', d => d) d now changes to be the event
-RESOLUTION:  In order to actually pass the value we need to do:  .on('mouseover', (e,d) => circleToolTip(e,d)) where e is the event and d is the object
+**ERROR:**  When using .on('mouseover', d => d) d now changes to be the event <br>
+**RESOLUTION:**  In order to actually pass the value we need to do:  .on('mouseover', (e,d) => circleToolTip(e,d)) where e is the event and d is the object
 
-ISSUE: Neither e.pageY, e.clientY, e.screenY work to position the tooltip 
-RESOLUTION: use e.nativeEvent.offsetY
+**ISSUE:** Neither e.pageY, e.clientY, e.screenY work to position the tooltip.  Mousing over the last park in Brooklyn Heights would possition the tooltip all the way to the left.
+
+<img src="https://i.imgur.com/3BU4ADF.png">
+
+Console log of the following coords:
+
+```js
+console.log(
+    'e.value',
+    e.target,
+    e.nativeEvent.clientX,
+    e.nativeEvent.pageX,
+    e.nativeEvent.offsetX,
+    e.nativeEvent.layerX
+  );
+```
+
+Showed the following
+
+<img src="https://i.imgur.com/IYchrx1.png">
+
+**RESOLUTION #1:** use e.nativeEvent.offsetX...although that works for the circles perfectly the tooltip are off if the page when the width is minimized...so this only works if the page width is fixed
+
+**RESOLUTION #2:** using e.nativeEvent.layerX along with replacing left/top with transform: translate(x,y) then 
+targets the current position of the cursor.  <br>
+
+<img src="https://i.imgur.com/uk9eMSK.png"/>
+
+vs
+
+<img src="https://i.imgur.com/IYchrx1.png">
+
+
 
 
 ### SECTION: APP
-WARNING: 
+**WARNING: **
 <img src="https://i.imgur.com/1cdkmZS.png" />
-RESOLUTION: refactor setParkData to be a functional update
+
+**RESOLUTION:** refactor setParkData function to use a callback to create a local scope. 
 
 **From This:**
 ```js
