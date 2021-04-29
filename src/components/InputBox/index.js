@@ -2,18 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import './styles.css';
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 
-const Input = ({dispatch,allParks,activeParks, reset}) => {
+const Input = ({dispatch,allParks, activeParks, reset}) => {
   // console.log('Input - props', activeParks, reset)
   const [val, setVal] = useState('');
   const [isVisible, setIsVisible] = useState(false)
-  const [isOpen, setOpen] = useState(false)
+  // const [isOpen, setOpen] = useState(false)
   const ref = useRef()
-  useOnClickOutside(ref, () => setOpen(false))
+  useOnClickOutside(ref, () => setIsVisible(false))
 
   const handleUpdateVal = (park) => {
     dispatch({type: 'FILTER_ACTIVE_PARK', payload: { park }})
     setVal(park.name)
-    setOpen(false)
+    // setOpen(false)
   }
 
   const parkChoices = allParks
@@ -33,22 +33,21 @@ const Input = ({dispatch,allParks,activeParks, reset}) => {
   // THIS HANDLES THE MANUAL TOGGLING OF THE DROP DOWN
   const handleToggle = () => {
     setIsVisible(!isVisible)
-    setOpen(true)
+    // setOpen(true)
   }
 
   useEffect(() => {
     setIsVisible(false)
-    if(activeParks.length > 2 || reset) {
+    switch(true){
+      case activeParks.length > 2 || reset : 
         setVal('')
-    } else if(activeParks.length === 1) {
-      setVal(activeParks[0].name)
+        break
+      case activeParks.length === 1 : 
+        setVal(activeParks[0].name)
+        break
+      default : setVal('')
     }
-    // setVal('')
   }, [activeParks, reset])
-
-  // useEffect(() => {
-  //   setVal()
-  // }, [val])
 
   return (
     <>
@@ -61,7 +60,7 @@ const Input = ({dispatch,allParks,activeParks, reset}) => {
         placeholder="court name"
       />
     </form>
-      {isOpen ? (
+      {isVisible ? (
       <div ref={ref} id="parkChoices" >
         {parkChoices}
         {/* 

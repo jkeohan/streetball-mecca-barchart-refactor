@@ -13,6 +13,7 @@ export const filterParksByName = (park, parkName) => {
     return park
 }
 export const filterParksByBorough = (park, filter) => park.borough === filter 
+
 export const filterParksByNeighborhood = (nestedData, filter) => {
   const neighborhood = nestedData.filter( d => d.key === filter)
   return neighborhood
